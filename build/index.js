@@ -33,7 +33,7 @@ const ALLOWED_MEDIA_TYPES = ['image'];
 // Note: I purposely used "kinjalslider" in the block name.
 registerBlockType('theme/kinjalslider', {
   apiVersion: 2,
-  title: 'Kinjal Slider',
+  title: 'Testimonial Slider',
   category: 'layout',
   icon: {
     background: '#7e70af',
@@ -185,7 +185,7 @@ registerBlockType('theme/kinjalslider', {
           author: ""
         }]
       })
-    }, "+"));
+    }, "+ Add Testimonial"));
   },
   save(props) {
     const {

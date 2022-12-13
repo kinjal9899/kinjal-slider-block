@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: My Kinjal Slider Block
+Plugin Name: My Slider Block
 */
 /**
  * Enqueue scripts and styles.
