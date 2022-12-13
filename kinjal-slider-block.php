@@ -9,17 +9,17 @@ define( 'GF_PLUGIN_DIR_PATH', plugin_dir_url( __DIR__ ) );
 
 function kinjal_slider_scripts(){
 	//Styles
-	wp_enqueue_style('kinjal-slider-slick-css', '/wp-content/plugins/kinjal-slider-block/src/slick/slick.css', array(), time());
-	wp_enqueue_style('kinjal-slider-slick-theme-css', '/wp-content/plugins/kinjal-slider-block/src/slick/slick-theme.css', array(), time());
+	wp_enqueue_style('kinjal-slider-slick-css', '/wp-content/plugins/kinjal-slider-block-main/src/slick/slick.css', array(), time());
+	wp_enqueue_style('kinjal-slider-slick-theme-css', '/wp-content/plugins/kinjal-slider-block-main/src/slick/slick-theme.css', array(), time());
 	//Scripts
-	wp_enqueue_script('kinjal-slider-slick-js', '/wp-content/plugins/kinjal-slider-block/src/slick/slick.js', array('jquery'), time(), true);
-	wp_enqueue_script('kinjal-slider-slick-js', '/wp-content/plugins/kinjal-slider-block/src/slick/slick.min.js', array('jquery'), time(), true);
-	wp_enqueue_script('kinjal-slider-custom-js', '/wp-content/plugins/kinjal-slider-block/src/custom.js', array('jquery'), time(),true);
+	wp_enqueue_script('kinjal-slider-slick-js', '/wp-content/plugins/kinjal-slider-block-main/src/slick/slick.js', array('jquery'), time(), true);
+	wp_enqueue_script('kinjal-slider-slick-js', '/wp-content/plugins/kinjal-slider-block-main/src/slick/slick.min.js', array('jquery'), time(), true);
+	wp_enqueue_script('kinjal-slider-custom-js', '/wp-content/plugins/kinjal-slider-block-main/src/custom.js', array('jquery'), time(),true);
 
-	wp_enqueue_style( 'gts-style-css', '/wp-content/plugins/kinjal-slider-block/dist/blocks.style.build.css', array(), time() );
-	wp_enqueue_style('bootstrap-style', '/wp-content/plugins/kinjal-slider-block/lib/css/bootstrap.min.css', array(), time() );
+	wp_enqueue_style( 'gts-style-css', '/wp-content/plugins/kinjal-slider-block-main/dist/blocks.style.build.css', array(), time() );
+	wp_enqueue_style('bootstrap-style', '/wp-content/plugins/kinjal-slider-block-main/lib/css/bootstrap.min.css', array(), time() );
 
-	wp_enqueue_script('bootstrap-script',  '/wp-content/plugins/kinjal-slider-block/lib/js/bootstrap.min.js', array('jquery'), time());
+	wp_enqueue_script('bootstrap-script',  '/wp-content/plugins/kinjal-slider-block-main/lib/js/bootstrap.min.js', array('jquery'), time());
 }
 add_action('wp_enqueue_scripts', 'kinjal_slider_scripts');
 
@@ -27,7 +27,7 @@ function gts_editor_assets() {
 	// Scripts.
 	wp_enqueue_script(
 		'gts-block-js', // Handle.
-		plugins_url( '/kinjal-slider-block/dist/blocks.build.js', dirname( __FILE__ ) ),
+		plugins_url( '/kinjal-slider-block-main/dist/blocks.build.js', dirname( __FILE__ ) ),
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
 		true
 	);
@@ -36,7 +36,7 @@ function gts_editor_assets() {
 
 	wp_enqueue_style(
 		'gts-fontawesome-style-css', // Handle.
-		plugins_url( '/kinjal-slider-block/lib/css/fontawesome.min.css', dirname( __FILE__ ) ), // Block editor CSS.
+		plugins_url( '/kinjal-slider-block-main/lib/css/fontawesome.min.css', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' ) // Dependency to include the CSS after it.
 		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
 	);
@@ -49,7 +49,7 @@ function my_slider_block_register_block() {
 
 	// Register JavasScript File build/index.js
 	wp_register_script(
-		'kinjal-slider-block',
+		'kinjal-slider-block-main',
 		plugins_url( 'build/index.js', __FILE__ ),
 		array( 'wp-blocks', 'wp-element', 'wp-editor' ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' )
@@ -57,7 +57,7 @@ function my_slider_block_register_block() {
 
 	// Register editor style src/editor.css
 	wp_register_style(
-		'kinjal-slider-block-editor-style',
+		'kinjal-slider-block-main-editor-style',
 		plugins_url( 'src/editor.css', __FILE__ ),
 		array( 'wp-edit-blocks' ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'src/editor.css' )
@@ -65,17 +65,17 @@ function my_slider_block_register_block() {
 
 	// Register front end block style src/style.css
 	wp_register_style(
-		'kinjal-slider-block-frontend-style',
+		'kinjal-slider-block-main-frontend-style',
 		plugins_url( 'src/style.css', __FILE__ ),
 		array( ),
 		filemtime( plugin_dir_path( __FILE__ ) . 'src/style.css' )
 	);
 
 	// Register your block
-	register_block_type( 'kinjal-slider-block/kinjal-slider-block', array(
-		'editor_script' => 'kinjal-slider-block',
-		'editor_style' => 'kinjal-slider-block-editor-style',
-		'style' => 'kinjal-slider-block-frontend-style',
+	register_block_type( 'kinjal-slider-block-main/kinjal-slider-block-main', array(
+		'editor_script' => 'kinjal-slider-block-main',
+		'editor_style' => 'kinjal-slider-block-main-editor-style',
+		'style' => 'kinjal-slider-block-main-frontend-style',
 	) );
 
 }
