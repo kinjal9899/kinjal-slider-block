@@ -13,4 +13,15 @@
     display: block;
     height: 300px;
     background-repeat: no-repeat;
- }
+}
+span.remove-testimonial {
+    float: right;
+}
+
+textarea.block-editor-plain-text.content-plain-text {
+    padding: 20px;
+}
+
+textarea.block-editor-plain-text.author-plain-text {
+    padding: 10px 20px;
+}

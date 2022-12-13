@@ -136,7 +136,12 @@ registerBlockType('theme/kinjalslider', {
                                                         </a>
                                                     </div>
                                                 )}
-                                                <img src={testimonial.image} />
+                                                <img src={testimonial.image}
+                                                    className="gts__picture__image"
+                                                    style={{
+                                                        backgroundImage: `url(${testimonial.image})`,
+                                                    }}
+                                                    onClick={open} />
                                                 {/* <div
                                                     className="gts__picture__image"
                                                     style={{

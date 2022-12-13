@@ -128,7 +128,12 @@ registerBlockType('theme/kinjalslider', {
               });
             }
           }, "\xD7 Remove")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-            src: testimonial.image
+            src: testimonial.image,
+            className: "gts__picture__image",
+            style: {
+              backgroundImage: `url(${testimonial.image})`
+            },
+            onClick: open
           })) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
             href: "#",
             className: "gts__picture__image",

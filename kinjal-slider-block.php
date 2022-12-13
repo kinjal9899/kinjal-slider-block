@@ -9,14 +9,41 @@ define( 'GF_PLUGIN_DIR_PATH', plugin_dir_url( __DIR__ ) );
 
 function kinjal_slider_scripts(){
 	//Styles
-	wp_enqueue_style('kinjal-slider-slick-css', '/wp-content/plugins/myguten-block/src/slick/slick.css', array(), time());
-	wp_enqueue_style('kinjal-slider-slick-theme-css', '/wp-content/plugins/myguten-block/src/slick/slick-theme.css', array(), time());
+	wp_enqueue_style('kinjal-slider-slick-css', '/wp-content/plugins/kinjal-slider-block/src/slick/slick.css', array(), time());
+	wp_enqueue_style('kinjal-slider-slick-theme-css', '/wp-content/plugins/kinjal-slider-block/src/slick/slick-theme.css', array(), time());
 	//Scripts
-	wp_enqueue_script('kinjal-slider-slick-js', '/wp-content/plugins/myguten-block/src/slick/slick.js', array('jquery'), time(), true);
-	wp_enqueue_script('kinjal-slider-slick-js', '/wp-content/plugins/myguten-block/src/slick/slick.min.js', array('jquery'), time(), true);
-	wp_enqueue_script('kinjal-slider-custom-js', '/wp-content/plugins/myguten-block/src/custom.js', array('jquery'), time(),true);
+	wp_enqueue_script('kinjal-slider-slick-js', '/wp-content/plugins/kinjal-slider-block/src/slick/slick.js', array('jquery'), time(), true);
+	wp_enqueue_script('kinjal-slider-slick-js', '/wp-content/plugins/kinjal-slider-block/src/slick/slick.min.js', array('jquery'), time(), true);
+	wp_enqueue_script('kinjal-slider-custom-js', '/wp-content/plugins/kinjal-slider-block/src/custom.js', array('jquery'), time(),true);
+
+	wp_enqueue_style( 'gts-style-css', '/wp-content/plugins/kinjal-slider-block/dist/blocks.style.build.css', array(), time() );
+	wp_enqueue_style('bootstrap-style', '/wp-content/plugins/kinjal-slider-block/lib/css/bootstrap.min.css', array(), time() );
+
+	wp_enqueue_script('bootstrap-script',  '/wp-content/plugins/kinjal-slider-block/lib/js/bootstrap.min.js', array('jquery'), time());
 }
 add_action('wp_enqueue_scripts', 'kinjal_slider_scripts');
+
+function gts_editor_assets() {
+	// Scripts.
+	wp_enqueue_script(
+		'gts-block-js', // Handle.
+		plugins_url( '/kinjal-slider-block/dist/blocks.build.js', dirname( __FILE__ ) ),
+		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
+		true
+	);
+
+	// Styles.
+
+	wp_enqueue_style(
+		'gts-fontawesome-style-css', // Handle.
+		plugins_url( '/kinjal-slider-block/lib/css/fontawesome.min.css', dirname( __FILE__ ) ), // Block editor CSS.
+		array( 'wp-edit-blocks' ) // Dependency to include the CSS after it.
+		// filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: filemtime — Gets file modification time.
+	);
+}
+
+// Hook: Editor assets.
+add_action( 'enqueue_block_editor_assets', 'gts_editor_assets' );
 
 function my_slider_block_register_block() {
 
@@ -45,7 +72,7 @@ function my_slider_block_register_block() {
 	);
 
 	// Register your block
-	register_block_type( 'myguten-block/myguten-block', array(
+	register_block_type( 'kinjal-slider-block/kinjal-slider-block', array(
 		'editor_script' => 'kinjal-slider-block',
 		'editor_style' => 'kinjal-slider-block-editor-style',
 		'style' => 'kinjal-slider-block-frontend-style',
